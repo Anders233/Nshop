@@ -14,4 +14,4 @@
 >  - [X] 添加按钮前方图片(Add button front picture)
 >  - [ ] 更改输入框为滑块(Change the input box to a slider)
 >  - [X] 更改一些提示消息(Change some tips message)
->  - X] 更改配置文件读写(Change configuration file read and write)
+>  - [X] 更改配置文件读写(Change configuration file read and write)
