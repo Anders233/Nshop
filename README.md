@@ -8,10 +8,10 @@
 ![image](https://github.com/nituzhazha/Nshop/blob/master/photo.JPG)
 
 > - 代办事项   DOOT:
->  - [ ] 添加打开商店指令(Add open store command)
->  - [ ] 添加重载商店指令(Add overloaded store command)
+>  - [X] 添加打开商店指令(Add open store command)
+>  - [X] 添加重载商店指令(Add overloaded store command)
 >  - [ ] 添加药水效果商店(Add potion effect store)
->  - [ ] 添加按钮前方图片(Add button front picture)
+>  - [X] 添加按钮前方图片(Add button front picture)
 >  - [ ] 更改输入框为滑块(Change the input box to a slider)
->  - [ ] 更改一些提示消息(Change some tips message)
->  - [ ] 更改配置文件读写(Change configuration file read and write)
+>  - [X] 更改一些提示消息(Change some tips message)
+>  - X] 更改配置文件读写(Change configuration file read and write)
