@@ -1,0 +1,27 @@
+name: Nshop
+main: magic\Nshop
+version: 7.0
+api:
+  - 1.0.0
+  - 2.0.0
+  - 3.0.0
+  - 4.0.0
+load: STARTUP
+authors: ["nitu", "Anders"]
+commands:
+  nshop:
+    description: Nshop V7
+    usage: /nshop <relaod|shop>
+    aliases:
+      - 商店
+    permission: Nshop.Command.Nshop
+permissions:
+  Nshop.Command.Nshop:
+    description: "使用指令：/nshop"
+    default: true
+  Nshop.Command.Nshop.Reload:
+    description: "使用指令：/nshop reload"
+    default: op
+  Nshop.Command.Nshop.Shop:
+    description: "使用指令：/nshop shop"
+    default: true

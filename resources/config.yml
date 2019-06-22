@@ -1,0 +1,24 @@
+#此配置介意不要修改如果要改我也没办法拦你...
+#如果插件更新请将这个配置删除否则会出错
+zhu_ui_title: '§l§6N§eshop §dV§a7'
+zhu_ui_content: '§a欢迎使用 §l§6N§eshop §dV§a7'
+zhu_ui_text1: '§a购买商店'
+zhu_ui_text2: '§b回收商店'
+zhu_ui_text3: '§c指令商店'
+zhu_ui_text4: '§d经验商店'
+zhu_ui_text5: '§e附魔商店'
+zhu_ui_text6: '§6兑换商店'
+shou_ui_title: '§a购买商店'
+shou_ui_content: '§a欢迎使用 §l§6N§eshop §dV§a7'
+mai_ui_title: '§b回收商店'
+mai_ui_content: '§a欢迎使用 §l§6N§eshop §dV§a7'
+sui_ui_title: '§c指令商店'
+sui_ui_content: '§a欢迎使用 §l§6N§eshop §dV§a7'
+yan_ui_title: '§d经验商店'
+yan_ui_content: '§a欢迎使用 §l§6N§eshop §dV§a7'
+mo_ui_title: '§e附魔商店'
+mo_ui_content: '§a欢迎使用 §l§6N§eshop §dV§a7'
+huan_ui_title: '§6兑换商店'
+huan_ui_content: '§a欢迎使用 §l§6N§eshop §dV§a7'
+#作者QQ：1010340249欢迎反馈一切bug
+#作者弃坑了有BUG联系2641541097
