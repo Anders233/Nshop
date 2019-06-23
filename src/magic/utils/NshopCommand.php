@@ -36,14 +36,12 @@ class NshopCommand
                 if ($sender->hasPermission("Nshop.Command.Nshop")) {
                     if ($sender instanceof Player) {
                         $this->plugin->getShopMenuItem($sender);
-                    } else {
-                        $sender->sendMessage($this->plugin->getPreFix() . "请在游戏中使用此命令!");
                     }
                     if (isset($args[0])) {
                         switch ($args[0]) {
                             case "reload":
                                 if ($sender->hasPermission("Nshop.Command.Nshop.Relaod")) {
-                                    $this->plugin->reloadConfig();
+                                    $this->plugin->relaodAllConfig();
                                     $sender->sendMessage($this->plugin->getPreFix() . "配置文件重载完成!");
                                 } else {
                                     $sender->sendMessage($this->plugin->getPreFix() . "你没有权限使用这条指令!");
