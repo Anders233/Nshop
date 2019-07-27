@@ -11,16 +11,16 @@ class API
 {
     private $plugin;
 
-    const ZHU = 0;
-    const SHOU = 1;
-    const MAI = 2;
-    const SUI = 3;
-    const YAN = 4;
-    const MO = 5;
-    const ONE = 6;
-    const TWO = 7;
-    const HUAN = 8;
-    const THREE = 9;
+    const MainUI = 95270;
+    const ShopUI = 95271;
+    const SellUI = 95272;
+    const CmdUI = 95273;
+    const ExpUI = 95274;
+    const MagicUI = 95275;
+    const ShopUITow = 95276;
+    const SellUITow = 95277;
+    const SwopUI = 95278;
+    const SwopUITow = 95279;
 
     public function __construct(Nshop $plugin)
     {
@@ -30,34 +30,34 @@ class API
     public function UIAPI(int $formId, Player $player)
     {
         switch ($formId) {
-            case 0:
+            case self::MainUI:
                 $json = $this->MainUI($player);
                 break;
-            case 1:
+            case self::ShopUI:
                 $json = $this->ShopUI();
                 break;
-            case 2:
+            case self::SellUI:
                 $json = $this->SellUI();
                 break;
-            case 3:
+            case self::CmdUI:
                 $json = $this->CmdUI();
                 break;
-            case 4:
+            case self::ExpUI:
                 $json = $this->ExpUI();
                 break;
-            case 5:
+            case self::MagicUI:
                 $json = $this->MagicUI();
                 break;
-            case 6:
+            case self::ShopUITow:
                 $json = $this->ShopUITow();
                 break;
-            case 7:
+            case self::SellUITow:
                 $json = $this->SellUITow();
                 break;
-            case 8:
+            case self::SwopUI:
                 $json = $this->SwopUI();
                 break;
-            case 9:
+            case self::SwopUITow:
                 $json = $this->SwopUITow();
                 break;
         }

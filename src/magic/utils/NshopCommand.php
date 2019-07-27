@@ -41,12 +41,13 @@ class NshopCommand
                         switch ($args[0]) {
                             case "reload":
                                 if ($sender->hasPermission("Nshop.Command.Nshop.Relaod")) {
-                                    $this->plugin->relaodAllConfig();
+                                    Nshop::getNshop()->relaodAllConfig();
                                     $sender->sendMessage($this->plugin->getPreFix() . "配置文件重载完成!");
                                 } else {
                                     $sender->sendMessage($this->plugin->getPreFix() . "你没有权限使用这条指令!");
                                 }
                                 break;
+                            default:
                             case "open":
                             case "Open":
                             case "打开":

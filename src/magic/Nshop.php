@@ -313,7 +313,7 @@ class Nshop extends PluginBase
      */
     public function getMainUI($player)
     {
-        $this->getAPI()->UIAPI(0, $player);
+        $this->getAPI()->UIAPI(API::MainUI, $player);
     }
 
     /**
@@ -383,7 +383,7 @@ class Nshop extends PluginBase
      * @return bool
      */
     public function onCommand(CommandSender $sender, Command $command, string $label, array $args): bool
-    {//命令Command
+    {
         return $this->NshopCommand->onCommand($sender, $command, $label, $args);
     }
 

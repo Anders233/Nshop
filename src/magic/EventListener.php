@@ -2,6 +2,7 @@
 
 namespace magic;
 
+use magic\utils\API;
 use onebone\economyapi\EconomyAPI;
 use pocketmine\command\ConsoleCommandSender;
 use pocketmine\event\Listener;
@@ -29,7 +30,7 @@ class EventListener implements Listener
         $player = $event->getPlayer();
         $item = $event->getItem();
         if (($item->getCustomName() == "§l§6N§eshop §dV§c7§b商店") || ($item->getId() == 399 && $item->getDamage() == 993)) {
-            Nshop::getNshop()->getAPI()->UIAPI(0, $player);
+            Nshop::getNshop()->getAPI()->UIAPI(API::MainUI, $player);
             $event->setCancelled(true);
         }
     }
@@ -56,23 +57,17 @@ class EventListener implements Listener
         $ExpAll = Nshop::getNshop()->getExpShopAll();
         $MagicAll = Nshop::getNshop()->getMagicShopAll();
         $SwopAll = Nshop::getNshop()->getSwopShopAll();
-        $ShopSwitch = Nshop::getNshop()->getSwitch("出售商店开关");
-        $SellSwitch = Nshop::getNshop()->getSwitch("回收商店开关");
-        $CmdShopSwitch = Nshop::getNshop()->getSwitch("指令商店开关");
-        $ExpShopSwitch = Nshop::getNshop()->getSwitch("经验商店开关");
-        $MagicSwitch = Nshop::getNshop()->getSwitch("附魔商店开关");
-        $SwopSwitch = Nshop::getNshop()->getSwitch("兑换商店开关");
         $packet = $event->getPacket();
         $player = $event->getPlayer();
         if (!($packet instanceof ModalFormResponsePacket)) return;
         $FormID = $packet->formId;
         $FormData = json_decode($packet->formData);
         switch ($FormID) {
-            case 0:
+            case API::MainUI:
                 if ($packet->formData == "null\n") return;
                 if ((int)$FormData == 0) {
-                    if ($ShopSwitch) {
-                        Nshop::getNshop()->getAPI()->UIAPI(1, $player);
+                    if (Nshop::getNshop()->getSwitch("出售商店开关")) {
+                        Nshop::getNshop()->getAPI()->UIAPI(API::ShopUI, $player);
                         return;
                     } else {
                         $player->sendMessage(Nshop::getNshop()->PreFix . "§l§4此商店已经关闭");
@@ -80,8 +75,8 @@ class EventListener implements Listener
                     }
                 }
                 if ((int)$FormData == 1) {
-                    if ($SellSwitch) {
-                        Nshop::getNshop()->getAPI()->UIAPI(2, $player);
+                    if (Nshop::getNshop()->getSwitch("回收商店开关")) {
+                        Nshop::getNshop()->getAPI()->UIAPI(API::SellUI, $player);
                         return;
                     } else {
                         $player->sendMessage(Nshop::getNshop()->PreFix . "§l§4此商店已经关闭");
@@ -89,8 +84,8 @@ class EventListener implements Listener
                     }
                 }
                 if ((int)$FormData == 2) {
-                    if ($CmdShopSwitch) {
-                        Nshop::getNshop()->getAPI()->UIAPI(3, $player);
+                    if (Nshop::getNshop()->getSwitch("指令商店开关")) {
+                        Nshop::getNshop()->getAPI()->UIAPI(API::CmdUI, $player);
                         return;
                     } else {
                         $player->sendMessage(Nshop::getNshop()->PreFix . "§l§4此商店已经关闭");
@@ -98,8 +93,8 @@ class EventListener implements Listener
                     }
                 }
                 if ((int)$FormData == 3) {
-                    if ($ExpShopSwitch) {
-                        Nshop::getNshop()->getAPI()->UIAPI(4, $player);
+                    if (Nshop::getNshop()->getSwitch("经验商店开关")) {
+                        Nshop::getNshop()->getAPI()->UIAPI(API::ExpUI, $player);
                         return;
                     } else {
                         $player->sendMessage(Nshop::getNshop()->PreFix . "§l§4此商店已经关闭");
@@ -107,8 +102,8 @@ class EventListener implements Listener
                     }
                 }
                 if ((int)$FormData == 4) {
-                    if ($MagicSwitch) {
-                        Nshop::getNshop()->getAPI()->UIAPI(5, $player);
+                    if (Nshop::getNshop()->getSwitch("附魔商店开关")) {
+                        Nshop::getNshop()->getAPI()->UIAPI(API::MagicUI, $player);
                         return;
                     } else {
                         $player->sendMessage(Nshop::getNshop()->PreFix . "§l§4此商店已经关闭");
@@ -116,8 +111,8 @@ class EventListener implements Listener
                     }
                 }
                 if ((int)$FormData == 5) {
-                    if ($SwopSwitch) {
-                        Nshop::getNshop()->getAPI()->UIAPI(8, $player);
+                    if (Nshop::getNshop()->getSwitch("兑换商店开关")) {
+                        Nshop::getNshop()->getAPI()->UIAPI(API::SwopUI, $player);
                         return;
                     } else {
                         $player->sendMessage(Nshop::getNshop()->PreFix . "§l§4此商店已经关闭");
@@ -125,7 +120,7 @@ class EventListener implements Listener
                     }
                 }
                 break;
-            case 1:
+            case API::ShopUI:
                 if ($packet->formData == "null\n") return;
                 $Item = array_keys($ShopAll)[$FormData];
                 $Money = Nshop::getNshop()->getShop($Item)["单价"];
@@ -134,9 +129,9 @@ class EventListener implements Listener
                 Nshop::getNshop()->o1 = $Money;
                 Nshop::getNshop()->o2 = $Items[0];
                 Nshop::getNshop()->o3 = $Items[1];
-                Nshop::getNshop()->getAPI()->UIAPI(6, $player);
+                Nshop::getNshop()->getAPI()->UIAPI(API::ShopUITow, $player);
                 break;
-            case 2:
+            case API::SellUI:
                 if ($packet->formData == "null\n") return;
                 $Item = array_keys($SellAll)[$FormData];
                 $Money = Nshop::getNshop()->getSell($Item)["单价"];
@@ -144,9 +139,9 @@ class EventListener implements Listener
                 Nshop::getNshop()->t3 = $Money;
                 Nshop::getNshop()->t1 = $Items[0];
                 Nshop::getNshop()->t2 = $Items[1];
-                Nshop::getNshop()->getAPI()->UIAPI(7, $player);
+                Nshop::getNshop()->getAPI()->UIAPI(API::SellUITow, $player);
                 break;
-            case 3:
+            case API::CmdUI:
                 if ($packet->formData == "null\n") return;
                 $Command = array_keys($CmdShopAll)[$FormData];
                 $Money = Nshop::getNshop()->getCmdShop($Command)["单价"];
@@ -159,7 +154,7 @@ class EventListener implements Listener
                     Server::getInstance()->dispatchCommand(new ConsoleCommandSender(), str_replace("@p", $player->getName(), $Command));
                 }
                 break;
-            case 4:
+            case API::ExpUI:
                 if ($packet->formData == "null\n") return;
                 $Exp = array_keys($ExpAll)[$FormData];
                 $Money = Nshop::getNshop()->getExpShop($Exp)["单价"];
@@ -172,7 +167,7 @@ class EventListener implements Listener
                     $player->sendMessage(Nshop::getNshop()->PreFix . "§l§3恭喜你购买成功,§b本次花费了§e{$Money}");
                 }
                 break;
-            case 5:
+            case API::MagicUI:
                 if ($packet->formData == "null\n") return;
                 $Magic = array_keys($MagicAll)[$FormData];
                 $Money = Nshop::getNshop()->getMagicShop($Magic)["单价"];
@@ -192,7 +187,7 @@ class EventListener implements Listener
                     $player->sendMessage(Nshop::getNshop()->PreFix . "§l§3恭喜你购买成功,§b本次花费了§e{$Money}");
                 }
                 break;
-            case 6:
+            case API::ShopUITow:
                 if ($FormData[0] <= 0) {
                     $player->sendMessage(Nshop::getNshop()->PreFix . "§3请不要随意输入数值");
                 } else {
@@ -208,7 +203,7 @@ class EventListener implements Listener
                     unset($Money);
                 }
                 break;
-            case 7:
+            case API::SellUITow:
                 if ($FormData[0] <= 0) {
                     $player->sendMessage(Nshop::getNshop()->PreFix . "§3请不要随意输入数值");
                 } else {
@@ -223,9 +218,9 @@ class EventListener implements Listener
                 }
                 unset($Money);
                 break;
-            case 8:
+            case API::SwopUI:
                 if ($packet->formData == "null\n") return;
-                Nshop::getNshop()->getAPI()->UIAPI(9, $player);
+                Nshop::getNshop()->getAPI()->UIAPI(API::SwopUITow, $player);
                 $i = array_keys($SwopAll)[$FormData];
                 $items = Nshop::getNshop()->getSwopShop($i)["需要物品"];
                 $Command = Nshop::getNshop()->getSwopShop($i)["执行命令"];
@@ -235,7 +230,7 @@ class EventListener implements Listener
                 Nshop::getNshop()->y3 = $items;
                 Nshop::getNshop()->y4 = $Command;
                 break;
-            case 9:
+            case API::SwopUITow:
                 if ($FormData[0] <= 0) {
                     $player->sendMessage(Nshop::getNshop()->PreFix . "§3请不要随意输入数值");
                 } else {
