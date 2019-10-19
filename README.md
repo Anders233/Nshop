@@ -7,7 +7,7 @@
 
 ![image](https://github.com/nituzhazha/Nshop/blob/master/photo.JPG)
 
-> - 代办事项   DOOT:
+> - TODO:
 >  - [X] 添加打开商店指令(Add open store command)
 >  - [X] 添加重载商店指令(Add overloaded store command)
 >  - [ ] 添加药水效果商店(Add potion effect store)
